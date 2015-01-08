@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>docker - Build, Ship and Run. Any App, Anywhere</title>
+
+		<meta name="description" content="docker - Build, Ship and Run - Any App, Anywhere">
+		<meta name="author" content="Peter Manser">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<style>
+			img {
+				box-shadow:none !important;
+				border:0 !important;
+			}
+		</style>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="https://d3oypxn00j2a10.cloudfront.net/0.12.6/img/homepage/docker-whale-home-logo-@2x.png" style="width:400px;border:0;"/>
+					<h1>docker</h1>
+					<h3>docker - Build, Ship and Run<br /> Any App, Anywhere</h3>
+					<em>7 January 2015</em><br />
+				</section>
+
+				<section>
+					<h2><a href="https://twitter.com/petermanser">@petermanser</a></h2>
+					<p>
+						working at <a href="https://smartive.ch">smartive.ch</a>
+					</p>
+					<p>
+						❤️ the web
+					</p>
+				</section>
+				<section>
+					<section>
+						<h2>Problem</h2>
+					</section>
+					<section>
+						<h2>App v1</h2>
+						<img style="height:500px" src="/img/app_1.png" alt="App v1">
+					</section>
+					<section>
+						<h2>App v2</h2>
+						<img style="height:500px" src="/img/app_2.png" alt="App v2">
+					</section>
+					<section>
+						<h2>App v3</h2>
+						<img style="height:500px" src="/img/app_3.png" alt="App v3">
+					</section>
+					<section>
+						<h2>App v4</h2>
+						<img style="height:500px" src="/img/app.png" alt="App v4">
+					</section>
+					<section>
+						<h2>Environment</h2>
+						<img style="height:500px" src="/img/env_dev.png" alt="Environment Development">
+					</section>
+					<section>
+						<h2>Environments</h2>
+						<div class="reveal">
+							<div class="reveal">
+								<img style="height:200px" src="/img/env_prod.png" alt="Environment Production">
+							</div>
+							<div class="reveal">
+								<img style="height:200px;float:middle;margin:1em;" src="/img/env_dev.png" alt="Environment Dev">
+								<img style="height:200px;float:middle;margin:1em;" src="/img/env_qual.png" alt="Environment Qual">
+								<img style="height:200px;float:middle;margin:1em;" src="/img/env_ci.png" alt="Environment CI">
+							</div>
+						</div>
+					</section>
+					<section>
+						<em>"Works on my machine"</em>
+					</section>
+					<section>
+						<h2>Continuous<br />Integration</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Docker</h2>
+						<em>13 March 2013</em><br />
+						<em>Go</em>
+					</section>
+					<section data-background="http://venturebeat.files.wordpress.com/2014/10/containers.jpg">
+						<div style="height:500px;"></div>
+						<p style="color:#ddd;font-size:0.5em;">Image Credit: Shutterstock/Egorov Artem</bottom>
+					</section>
+					<section>
+						<h2>What is docker?</h2>
+						<em>"Docker is to deployment as Git is to development"</em>
+					</section>
+					<section>
+						<h2>What is docker?</h2>
+						<ul>
+							<li>Open platform for building and sharing disk images
+							<li>Lightweight VMs
+							<li><a href="https://registry.hub.docker.com/">Docker Hub Registry</a>
+						</ul>
+					</section>
+					<section>
+						<h2>How does it work?</h2>
+						<ul>
+							<li>Linux Containers (LXC) - fully isolated processes
+							<li>Btrfs (B-tree file system) - snapshots
+						</ul>
+					</section>
+					<section>
+						<h2>docker on Linux</h2>
+						<div class="reveal">
+							<img src="/img/dockerlinux.png" alt="docker on Linux" />
+							<p style="font-size:0.5em">http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide</p>
+						</div>
+					</section>
+					<section>
+						<h2>docker on OSX</h2>
+						<div class="reveal">
+							<img src="/img/dockerosx.png" alt="docker on OSX">
+							<p style="font-size:0.5em">http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide</p>
+						</div>
+					</section>
+					<section>
+						<h2>
+							<a href="http://boot2docker.io/">boot2docker</a>
+						</h2>
+						<div class="reveal">
+							<ul>
+								<li>lightweight Linux distribution (Tiny Core Linux)
+								<li>runs completely from RAM
+								<li>weighs ~27MB
+								<li>boots in ~5s
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h2>Containers / Images</h2>
+						<div class="reveal">
+							<img src="/img/docker-container.png" alt="docker Container">
+							<p style="font-size:0.5em">https://docs.docker.com/terms/container</p>
+						</div>
+					</section>
+					<section>
+						<h2>Demo</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Dockerfiles</h2>
+						<ul>
+							<li>Recipe to build a container ("Makefile")
+							<li>Based on a image (<em>FROM</em>)
+							<li>Additional commands (<em>RUN</em>)
+						</ul>
+					</section>
+					<section>
+						<h2>Example</h2>
+						<pre><code data-trim contenteditable>
+FROM ubuntu:14.04
+
+RUN apt-get update && apt-get install -y nginx
+
+CMD nginx -g "daemon off;"
+
+EXPOSE 80
+						</code></pre>
+					</section>
+					<section>
+						<h2>Demo</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2><a href="https://github.com/docker/fig">Fig</a></h2>
+						<p>Fast, isolated development environments</p>
+					</section>
+					<section>
+						<h2>fig.yml</h2>
+						<pre><code data-trim contenteditable>
+web:
+  build: .
+  command: python app.py
+  ports:
+   - "5000:5000"
+  volumes:
+   - .:/app
+  links:
+   - redis
+redis:
+  image: redis
+						</code></pre>
+					</section>
+					<section>
+						<h2>Demo</h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Tools?</h2>
+						<p><a href="http://www.centurylinklabs.com/top-10-open-source-docker-developer-tools">Yes, many!</a></p>
+					</section>
+					<section>
+						<h2>PaaS</h2>
+						<ul>
+							<li><a href="https://github.com/flynn/flynn">Flynn</a>
+							<li><a href="https://github.com/opdemand/deis">Deis</a>
+							<li><a href="https://github.com/progrium/dokku">Dokku</a>
+						</ul>
+					</section>
+					<section>
+						<h2>Orchestration</h2>
+						<ul>
+							<li><a href="https://github.com/GoogleCloudPlatform/kubernetes">Kubernetes (Google)</a>
+							<li><a href="https://github.com/docker/fig">Fig</a>
+							<li><a href="https://github.com/coreos">CoreOS</a>
+							<li><a href="https://github.com/hashicorp/serf">Serf</a>
+						</ul>
+					</section>
+					<section>
+						<h2>UI</h2>
+						<ul>
+							<li><a href="https://github.com/crosbymichael/dockerui">DockerUI</a>
+							<li><a href="https://github.com/kitematic/kitematic">Kitematic (Mac OS X)</a>
+							<li><a href="https://github.com/shipyard/shipyard">Shipyard</a>
+							<li><a href="https://github.com/centurylinklabs/panamax-ui">Panamax-ui</a>
+						</ul>
+					</section>
+					<section>
+						<h2>Continuous<br />Integration</h2>
+						<ul>
+							<li><a href="https://github.com/drone/drone">Drone</a>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Supporters?</h2>
+					</section>
+					<section>
+						<h2><a href="https://cloud.google.com/compute/docs/containers">Containers on Google Cloud Platform</a></h2>
+					</section>
+					<section>
+						<h2><a href="http://aws.amazon.com/blogs/aws/cloud-container-management/">Amazon EC2 Container Service (ECS)</a></h2>
+						<em>(preview)</em>
+					</section>
+					<section>
+						<h2><a href="http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/">Microsoft Azure + (planned) Windows Server Containers</a></h2>
+						<em>(planned)</em>
+					</section>
+				</section>
+				<section>
+					<h2>Thanks</h2>
+					<p style="font-size:2em;">🙇</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
